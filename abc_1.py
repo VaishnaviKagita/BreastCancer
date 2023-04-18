@@ -6,7 +6,7 @@ import cv2
 import tensorflow
 from tensorflow import keras
 import numpy as np
-from skimage import io
+
 
 
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
