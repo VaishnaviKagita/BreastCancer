@@ -2,7 +2,58 @@ import tempfile
 from tracemalloc import start
 import streamlit as st
 import cv2
-from main import *
+
+import tensorflow
+from tensorflow import keras
+import numpy as np
+from skimage import io
+
+
+from tensorflow.keras.preprocessing.image import img_to_array, load_img
+from tensorflow.keras.models import load_model
+
+def run(source = None):
+
+    model = tensorflow.keras.models.load_model(r'C:\Users\vaish\modelcnn.hdf5')
+
+    img = cv2.imread(source)
+    #img = io.imread(source)
+    
+    print(img)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(img_gray, (5, 5), 0)   
+    thresh = cv2.threshold(gray, 45, 25, cv2.THRESH_BINARY)[1]
+    thresh = cv2.erode(thresh, None, iterations=2)
+    thresh = cv2.dilate(thresh, None, iterations=2)
+    img_half = cv2.resize(img, (100, 100))
+    img_half = cv2.cvtColor(img_half, cv2.COLOR_BGR2GRAY)
+    x = img_to_array(img_half)
+    
+    x = np.array(x).reshape(-1, 100, 100, 1)
+
+    
+    y_pred = model.predict(x)
+    y_pred
+    if y_pred > 0.5:
+        y_pred = 1
+        print("D")
+        
+        return "Defect"
+    else:
+        y_pred = 0
+        print("N")
+        
+        return "Normal"
+        
+
+    
+#run(source=r"C:\Users\vaish\Downloads\data\Normal\10254_idx5_x101_y1151_class0.png")
+
+# if __name__ == "__main__":
+#     # opt = parse_opt()
+#     # main(opt)
+#     run(source=r'A:/TechieYan projects/AI/Completed/Identifying Defects in the Various Fabrics using Convolutional Neural Networks/FABRIC - Copy/Defect/aug_0_55.png')
+
 
 def gui():
 		
