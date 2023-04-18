@@ -90,7 +90,7 @@ def gui():
 	if source is not None:
 		show_file.info("File received!")
 
-	demo_image = r"C:\Users\vaish\Downloads\breast_self_examination.png"
+	demo_image = r"breast_self_examination.png"
 	#st.image(demo_image, caption='Predict your diagnosis')
 	image = cv2.imread(demo_image)
 	st.image(image, caption='Image of a breast')
