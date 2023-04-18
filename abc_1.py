@@ -14,7 +14,7 @@ from tensorflow.keras.models import load_model
 
 def run(source = None):
 
-    model = tensorflow.keras.models.load_model(r'C:\Users\vaish\modelcnn.hdf5')
+    model = tensorflow.keras.models.load_model(r'modelcnn.hdf5')
 
     img = cv2.imread(source)
     #img = io.imread(source)
