@@ -33,7 +33,7 @@ def run(source = None):
 
     
     y_pred = model.predict(x)
-    y_pred
+    
     if y_pred > 0.5:
         y_pred = 1
         print("D")
