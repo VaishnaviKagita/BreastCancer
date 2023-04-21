@@ -123,7 +123,7 @@ def gui():
 		ab = tfile.name
 		#st.text(ab)
 		x=run(source=ab)
-		st.text(run(source=ab))
+		#st.text(run(source=ab))
 		if(x=="Defect"):
 			st.text(" There is a Possibilty of Cancer in the Tissue")
 		else:
